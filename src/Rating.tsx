@@ -44,7 +44,7 @@ const Rating: React.FC<RatingProps> = ({ value = 0, onChange, readOnly }) => {
           key={star}
           role="radio"
           aria-checked={rating === star}
-          tabIndex={0}
+          tabIndex={readOnly ? -1 : 0}
           onClick={() => handleClick(star)}
           onKeyDown={(e) => handleKeyDown(e, star)}
           className={star <= rating ? "star selected" : "star"}
