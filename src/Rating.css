@@ -13,6 +13,15 @@
   font-weight: bold;
 }
 
+.rating-row.readonly {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.star.readonly {
+  cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
   .rating-container {
     font-size: 18px;

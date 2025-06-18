@@ -44,3 +44,106 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+# Rating Component
+
+A flexible, accessible, and customizable star rating component for React.
+
+---
+
+## Features
+
+- Customizable star count
+- Supports full, half, and fractional ratings
+- Custom icons and colors
+- RTL (right-to-left) support
+- Optional rating number display
+- Tooltips/labels on hover
+- Read-only/disabled mode
+- Reset/clear button
+- Keyboard accessible
+- Unit tested
+
+---
+
+## Installation
+
+```bash
+npm install
+```
+
+---
+
+## Usage
+
+```tsx
+import Rating from "./Rating";
+
+// Basic usage
+<Rating />
+
+// Controlled usage
+const [value, setValue] = useState(3);
+<Rating value={value} onChange={setValue} />
+
+// Customization
+<Rating
+  starCount={10}
+  allowHalf
+  showRatingNumber
+  fullColor="orange"
+  emptyColor="#eee"
+  labels={["Poor", "Fair", "Good", "Very Good", "Excellent", "Superb", "Awesome", "Perfect", "Wow", "Legendary"]}
+  showClear
+  rtl
+/>
+```
+
+---
+
+## Props
+
+| Prop               | Type                      | Default  | Description                            |
+| ------------------ | ------------------------- | -------- | -------------------------------------- |
+| `value`            | `number`                  | `0`      | Current rating value (controlled mode) |
+| `onChange`         | `(value: number) => void` | `-`      | Callback when rating changes           |
+| `readOnly`         | `boolean`                 | `false`  | If true, disables all interaction      |
+| `allowHalf`        | `boolean`                 | `false`  | Enable half-star selection             |
+| `showRatingNumber` | `boolean`                 | `true`   | Show rating number next to stars       |
+| `starCount`        | `number`                  | `5`      | Number of stars                        |
+| `fullIcon`         | `ReactNode`               | `-`      | Custom icon for full star              |
+| `halfIcon`         | `ReactNode`               | `-`      | Custom icon for half star              |
+| `emptyIcon`        | `ReactNode`               | `-`      | Custom icon for empty star             |
+| `fullColor`        | `string`                  | `"gold"` | Color for full star                    |
+| `halfColor`        | `string`                  | `"gold"` | Color for half star                    |
+| `emptyColor`       | `string`                  | `"#ccc"` | Color for empty star                   |
+| `labels`           | `string[]`                | `[]`     | Tooltip/label for each star            |
+| `animationScale`   | `number`                  | `1.2`    | Scale factor for hover animation       |
+| `showClear`        | `boolean`                 | `false`  | Show reset/clear button                |
+| `rtl`              | `boolean`                 | `false`  | Right-to-left layout                   |
+
+---
+
+## Accessibility
+
+- Fully keyboard accessible (arrow keys, Enter/Space)
+- Proper ARIA roles and labels
+- Read-only mode disables all interaction
+
+---
+
+## Testing
+
+Unit tests are provided using React Testing Library and Jest:
+
+```bash
+npm test
+```
+
+---
+
+## License
+
+MIT
+
+---
