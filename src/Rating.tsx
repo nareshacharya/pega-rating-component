@@ -10,10 +10,31 @@ interface RatingProps {
 const Rating: React.FC<RatingProps> = ({ value = 0, onChange, readOnly }) => {
   const [rating, setRating] = useState(value);
 
+  useEffect(() => {
+    setRating(value);
+  }, [value]);
+
   const handleClick = (val: number) => {
     if (readOnly) return;
     setRating(val);
     onChange?.(val);
+  };
+
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLSpanElement>,
+    star: number
+  ) => {
+    if (readOnly) return;
+    if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+      e.preventDefault();
+      handleClick(star);
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+      e.preventDefault();
+      handleClick(Math.max(1, rating - 1));
+    } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+      e.preventDefault();
+      handleClick(Math.min(5, rating + 1));
+    }
   };
 
   return (
@@ -25,7 +46,7 @@ const Rating: React.FC<RatingProps> = ({ value = 0, onChange, readOnly }) => {
           aria-checked={rating === star}
           tabIndex={0}
           onClick={() => handleClick(star)}
-          onKeyPress={(e) => e.key === "Enter" && handleClick(star)}
+          onKeyDown={(e) => handleKeyDown(e, star)}
           className={star <= rating ? "star selected" : "star"}
         >
           ★
